@@ -1,6 +1,7 @@
 package pack;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
@@ -12,11 +13,11 @@ public class Agenda extends calendar {
 	private String grid;
 	private int diaSelecionado;
 	private String lista;
-	private String msg[];
+	private boolean onOff = true;
+	//private String msg[];
 	
 	public Agenda()
 	{
-	   
 		mes (Integer.parseInt(getM()));
 	}
 	public void mes (int _mes)
@@ -75,13 +76,13 @@ public class Agenda extends calendar {
 	public void desenharGridAgenda()
 	{
 		grid = getDMA() + "\n ------------------------------------\n";
-		for(int dia = 1; dia < qtdDiaMes; dia ++ ) {
+		for(int dia = 1; dia <= qtdDiaMes; dia ++ ) {
 			if(dia == diaSelecionado) 
 				grid = grid +"("+dia+")" + " ";
 			else
 				grid = grid + dia + " ";
 			if( dia < 10)
-				grid = grid + "  ";
+				grid = grid + "   ";
 			if(dia % 7 == 0 && dia != 0)
 				grid = grid + "\n";
 		}
@@ -90,6 +91,8 @@ public class Agenda extends calendar {
 	}
 	public void setlista(String ListaDeAnotacoes, int d, int m)
 	{
+		//ArrayList<String> agenda = new ArrayList();
+		//agenda.add(  d " / " + m + " MSG : " + ListaDeAnotacoes + "\n";)
 		this.lista = lista + d + " / " + m + " MSG : " + ListaDeAnotacoes + "\n";
 	}
 	public void selecionarOpcao()
@@ -97,23 +100,28 @@ public class Agenda extends calendar {
 		//msg = new String[qtdDiaMes];
 		int mesSelecionado;
 		
+		//ADD
 		if(select == 1) {
-			
 			diaSelecionado = Integer.parseInt(JOptionPane.showInputDialog (null , "Informe o dia"));
 			mesSelecionado = Integer.parseInt(JOptionPane.showInputDialog (null , "Informe o mes"));
 			setlista(JOptionPane.showInputDialog (null , "informe a mensagem : "), diaSelecionado, mesSelecionado);
 			}
-		//for (int i = 0; i < diaSelecionado; i++) {
-			//if (msg[d] != null) {
-				
-				//lista = lista + diaSelecionado + "/"  +  " : " + msg[diaSelecionado] + "\n";
-				//}
-			//}
-			if(select == 2) 
-			JOptionPane.showMessageDialog(null, lista);
 		
+			//for (int i = 0; i < diaSelecionado; i++) {
+			//if (msg[d] != null) {
+			//lista = lista + diaSelecionado + "/"  +  " : " + msg[diaSelecionado] + "\n";
+			//}
+			//}
+		
+			if(select == 2) 
+				onOff = false;
+				
 			if(select == 3) 
-			JOptionPane.showMessageDialog(null, lista);
+				JOptionPane.showMessageDialog(null, lista);
+	}
+	public boolean fecharAgenda()
+	{
+		return onOff;
 	}
 	
 }

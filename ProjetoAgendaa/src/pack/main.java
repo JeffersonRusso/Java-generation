@@ -11,11 +11,14 @@ public class main {
 	
 	public static void main(String[] args) {
 	
-		boolean sair = true;
 		Agenda agenda = new Agenda();
-		while(true) {
+		
+		boolean sairEntrar = true;
+		
+		while(sairEntrar) {
 		agenda.desenharGridAgenda();
 		agenda.selecionarOpcao();
+		sairEntrar = agenda.fecharAgenda();
 	}	
 }
 	
