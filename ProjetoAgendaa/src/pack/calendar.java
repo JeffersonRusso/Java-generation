@@ -13,7 +13,7 @@ public class calendar {
 	}
 	public String getD()
 	{
-		SimpleDateFormat sdf = new SimpleDateFormat("dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("d");
 		String stringData = sdf.format(new Date());
 		return stringData;
 	}

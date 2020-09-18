@@ -1,5 +1,6 @@
 package pack;
 
+import java.awt.List;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,7 +15,6 @@ public class Agenda extends calendar {
 	private int diaSelecionado;
 	private String lista;
 	private boolean onOff = true;
-	//private String msg[];
 	
 	public Agenda()
 	{
@@ -75,49 +75,52 @@ public class Agenda extends calendar {
 	}
 	public void desenharGridAgenda()
 	{
-		grid = getDMA() + "\n ------------------------------------\n";
+		grid = getDMA() + "\n ------------------------------------\n MES ATUAL : " + mes + "\n"
+				+ " ------------------------------------\n" ;
 		for(int dia = 1; dia <= qtdDiaMes; dia ++ ) {
-			if(dia == diaSelecionado) 
+			if(dia == diaSelecionado) {
 				grid = grid +"("+dia+")" + " ";
+			}
 			else
-				grid = grid + dia + " ";
-			if( dia < 10)
-				grid = grid + "   ";
+				grid = grid +"\t"+ dia + "\t  ";
+			if( dia < 10 )
+				grid = grid + "  ";
 			if(dia % 7 == 0 && dia != 0)
 				grid = grid + "\n";
 		}
-		grid = grid + "\n------------------------------------\n1 - ADD\n2- EXIT\n3 - LIST";
-		select = Integer.parseInt(JOptionPane.showInputDialog (null , grid));
+		grid = grid + "\n------------------------------------\n"
+				+ "1 - Adicionar\n"
+				+ "2 - Sair\n"
+				+ "3 - Lista\n"
+				+ "4 - Mudar Mes";
+		
+		//select = Integer.parseInt(JOptionPane.showInputDialog (null , grid));
+		select = Integer.parseInt(JOptionPane.showInputDialog (null, grid));
 	}
 	public void setlista(String ListaDeAnotacoes, int d, int m)
 	{
-		//ArrayList<String> agenda = new ArrayList();
-		//agenda.add(  d " / " + m + " MSG : " + ListaDeAnotacoes + "\n";)
 		this.lista = lista + d + " / " + m + " MSG : " + ListaDeAnotacoes + "\n";
 	}
 	public void selecionarOpcao()
 	{
 		//msg = new String[qtdDiaMes];
 		int mesSelecionado;
-		
 		//ADD
 		if(select == 1) {
 			diaSelecionado = Integer.parseInt(JOptionPane.showInputDialog (null , "Informe o dia"));
 			mesSelecionado = Integer.parseInt(JOptionPane.showInputDialog (null , "Informe o mes"));
+			mes(mesSelecionado);
 			setlista(JOptionPane.showInputDialog (null , "informe a mensagem : "), diaSelecionado, mesSelecionado);
 			}
-		
-			//for (int i = 0; i < diaSelecionado; i++) {
-			//if (msg[d] != null) {
-			//lista = lista + diaSelecionado + "/"  +  " : " + msg[diaSelecionado] + "\n";
-			//}
-			//}
-		
 			if(select == 2) 
 				onOff = false;
 				
 			if(select == 3) 
 				JOptionPane.showMessageDialog(null, lista);
+			
+			if(select == 4) {
+				mes(Integer.parseInt(JOptionPane.showInputDialog (null , "Informe qual mês você quer mudar")));
+			}
 	}
 	public boolean fecharAgenda()
 	{
