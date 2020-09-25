@@ -1,0 +1,1 @@
+select * from tb_produtos where preco > 1000 and preco < 2000

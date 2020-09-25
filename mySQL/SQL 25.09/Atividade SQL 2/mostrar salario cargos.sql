@@ -1,0 +1,1 @@
+select nome, salario from tb_cargo
